@@ -15,6 +15,7 @@
 		18C552081ED8104F0012E16B /* ZPTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C552071ED8104F0012E16B /* ZPTools.m */; };
 		18C5520D1ED917430012E16B /* ZPVideoProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5520C1ED917430012E16B /* ZPVideoProgressBar.m */; };
 		18F4E25C1EEC20C000D5659C /* ZPVideoInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E25B1EEC20C000D5659C /* ZPVideoInfoView.m */; };
+		18F4E25F1EED5D9D00D5659C /* ZPChannelInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E25E1EED5D9D00D5659C /* ZPChannelInfo.m */; };
 		E56B6CA41EC169AA00648AF4 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B6CA31EC169AA00648AF4 /* PlayViewController.m */; };
 		E56B6CA81EC1A12200648AF4 /* playerBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E56B6CA61EC1A12200648AF4 /* playerBack@2x.png */; };
 		E56B6CA91EC1A12200648AF4 /* playerBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E56B6CA71EC1A12200648AF4 /* playerBack@3x.png */; };
@@ -94,6 +95,8 @@
 		18C5520C1ED917430012E16B /* ZPVideoProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPVideoProgressBar.m; sourceTree = "<group>"; };
 		18F4E25A1EEC20C000D5659C /* ZPVideoInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPVideoInfoView.h; sourceTree = "<group>"; };
 		18F4E25B1EEC20C000D5659C /* ZPVideoInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPVideoInfoView.m; sourceTree = "<group>"; };
+		18F4E25D1EED5D9D00D5659C /* ZPChannelInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPChannelInfo.h; sourceTree = "<group>"; };
+		18F4E25E1EED5D9D00D5659C /* ZPChannelInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPChannelInfo.m; sourceTree = "<group>"; };
 		E56B6CA21EC169AA00648AF4 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		E56B6CA31EC169AA00648AF4 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		E56B6CA61EC1A12200648AF4 /* playerBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playerBack@2x.png"; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 			children = (
 				18C552031ED733190012E16B /* ZPVideoInfo.h */,
 				18C552041ED733190012E16B /* ZPVideoInfo.m */,
+				18F4E25D1EED5D9D00D5659C /* ZPChannelInfo.h */,
+				18F4E25E1EED5D9D00D5659C /* ZPChannelInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -611,6 +616,7 @@
 				E5F555C81EC0004F004DFC8D /* ViewController.m in Sources */,
 				18C5520D1ED917430012E16B /* ZPVideoProgressBar.m in Sources */,
 				E5F555C51EC0004F004DFC8D /* AppDelegate.m in Sources */,
+				18F4E25F1EED5D9D00D5659C /* ZPChannelInfo.m in Sources */,
 				184FF35A1EE82186002293B5 /* DCPathButton.m in Sources */,
 				E5F555C21EC0004F004DFC8D /* main.m in Sources */,
 				18C552051ED733190012E16B /* ZPVideoInfo.m in Sources */,
