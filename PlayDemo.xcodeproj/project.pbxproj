@@ -16,6 +16,7 @@
 		18C5520D1ED917430012E16B /* ZPVideoProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5520C1ED917430012E16B /* ZPVideoProgressBar.m */; };
 		18F4E25C1EEC20C000D5659C /* ZPVideoInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E25B1EEC20C000D5659C /* ZPVideoInfoView.m */; };
 		18F4E25F1EED5D9D00D5659C /* ZPChannelInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E25E1EED5D9D00D5659C /* ZPChannelInfo.m */; };
+		18F4E2641EED6E2E00D5659C /* ZPHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E2631EED6E2E00D5659C /* ZPHomePageViewController.m */; };
 		E56B6CA41EC169AA00648AF4 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B6CA31EC169AA00648AF4 /* PlayViewController.m */; };
 		E56B6CA81EC1A12200648AF4 /* playerBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E56B6CA61EC1A12200648AF4 /* playerBack@2x.png */; };
 		E56B6CA91EC1A12200648AF4 /* playerBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E56B6CA71EC1A12200648AF4 /* playerBack@3x.png */; };
@@ -97,6 +98,8 @@
 		18F4E25B1EEC20C000D5659C /* ZPVideoInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPVideoInfoView.m; sourceTree = "<group>"; };
 		18F4E25D1EED5D9D00D5659C /* ZPChannelInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPChannelInfo.h; sourceTree = "<group>"; };
 		18F4E25E1EED5D9D00D5659C /* ZPChannelInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPChannelInfo.m; sourceTree = "<group>"; };
+		18F4E2621EED6E2E00D5659C /* ZPHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPHomePageViewController.h; sourceTree = "<group>"; };
+		18F4E2631EED6E2E00D5659C /* ZPHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPHomePageViewController.m; sourceTree = "<group>"; };
 		E56B6CA21EC169AA00648AF4 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		E56B6CA31EC169AA00648AF4 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		E56B6CA61EC1A12200648AF4 /* playerBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playerBack@2x.png"; sourceTree = "<group>"; };
@@ -277,14 +280,13 @@
 			name = DCPathButton;
 			sourceTree = "<group>";
 		};
-		18C552001ED732500012E16B /* PlayerView */ = {
+		18C552001ED732500012E16B /* PlayerPage */ = {
 			isa = PBXGroup;
 			children = (
 				18C5520A1ED9169B0012E16B /* View */,
 				18C552021ED732980012E16B /* Controller */,
-				18C552011ED732600012E16B /* Model */,
 			);
-			name = PlayerView;
+			name = PlayerPage;
 			sourceTree = "<group>";
 		};
 		18C552011ED732600012E16B /* Model */ = {
@@ -310,8 +312,9 @@
 		18C552091ED810560012E16B /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				18C552061ED8104F0012E16B /* ZPTools.h */,
+				18C552011ED732600012E16B /* Model */,
 				18C552071ED8104F0012E16B /* ZPTools.m */,
+				18C552061ED8104F0012E16B /* ZPTools.h */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -332,6 +335,23 @@
 				18F4E25B1EEC20C000D5659C /* ZPVideoInfoView.m */,
 			);
 			name = ZPVideoInfoView;
+			sourceTree = "<group>";
+		};
+		18F4E2611EED6DAB00D5659C /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				18F4E2651EED6EC000D5659C /* Controller */,
+			);
+			name = HomePage;
+			sourceTree = "<group>";
+		};
+		18F4E2651EED6EC000D5659C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18F4E2621EED6E2E00D5659C /* ZPHomePageViewController.h */,
+				18F4E2631EED6E2E00D5659C /* ZPHomePageViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		E56B6CA51EC1A12200648AF4 /* image */ = {
@@ -410,7 +430,8 @@
 			children = (
 				1805A7941EEBA04E00DD58FE /* Lib */,
 				18C552091ED810560012E16B /* Others */,
-				18C552001ED732500012E16B /* PlayerView */,
+				18F4E2611EED6DAB00D5659C /* HomePage */,
+				18C552001ED732500012E16B /* PlayerPage */,
 				E5F555C31EC0004F004DFC8D /* AppDelegate.h */,
 				E5F555C41EC0004F004DFC8D /* AppDelegate.m */,
 				E5F555C61EC0004F004DFC8D /* ViewController.h */,
@@ -625,6 +646,7 @@
 				E56B6CA41EC169AA00648AF4 /* PlayViewController.m in Sources */,
 				E5C456F21EC07620003499D4 /* ActivityIndicatorView.m in Sources */,
 				18C552081ED8104F0012E16B /* ZPTools.m in Sources */,
+				18F4E2641EED6E2E00D5659C /* ZPHomePageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
