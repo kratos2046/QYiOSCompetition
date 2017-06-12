@@ -115,6 +115,8 @@ static const NSTimeInterval kHUDAppearanceDuration = 1.0f;
     if ([playController isPlaying]) {
         [playController stopPlayer];
     }
+    [self removeSubView];
+    NSLog(@"dealloc");
 }
 
 #pragma mark - Set Player State
@@ -191,14 +193,15 @@ static const NSTimeInterval kHUDAppearanceDuration = 1.0f;
 -(void)createSubView {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
     [self createBasePlayerController];
     [self createFullScreenBtn];
     [self creatOriginalScreenBtn];
     [self createPlayBtn];
+    [self createCloseButton];
     [self createPauseBtn];
     [self createSuspendButton];
     [self createScreenShootView];
+    
     
     [self createVideoInfoView];
 }
@@ -291,12 +294,27 @@ static const NSTimeInterval kHUDAppearanceDuration = 1.0f;
     self.pauseBtn = pauseBtn;
 }
 
+-(void) createCloseButton {
+    UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    CGSize playerSize = self.playController.view.bounds.size;
+    CGFloat btnW = playerSize.height * kZPButtonSizeScale;
+    CGFloat btnH = btnW;
+    CGFloat btnX = playerSize.width - btnW;
+    CGFloat btnY = 0;
+    closeBtn.frame = CGRectMake(btnX, btnY, btnW, btnH);
+    [closeBtn addTarget:self action:@selector(closePlayerView) forControlEvents:UIControlEventTouchUpInside];
+    [closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
+    //    [pauseBtn setBackgroundColor:[UIColor redColor]];
+    [self.playController.view addSubview:closeBtn];
+
+}
 /**
  *  添加进度条
  */
 -(void)createProgressBar {
     ZPVideoProgressBar *progressBar = [ZPVideoProgressBar videoProgressWithMaxValue:[self.playController duration] minValue:0.0f progressColor:[UIColor brownColor] bufferColor:[UIColor grayColor] backgoundColor:[UIColor whiteColor] sliderButtonColor:[UIColor greenColor]];
-    
+//    progressBar.backgroundColor = [UIColor redColor];
     CGSize playerSize = self.playController.view.bounds.size;
     CGFloat progressBarW = playerSize.width - 2 * (self.playBtn.bounds.size.width + kZPPlayerViewSubViewMargin);
     CGFloat progressBarH = self.playBtn.bounds.size.height;
@@ -306,6 +324,8 @@ static const NSTimeInterval kHUDAppearanceDuration = 1.0f;
     progressBar.delegate = self;
 
     [self.playController.view addSubview:progressBar];
+    progressBar.layer.zPosition = 1;
+    [self.playController.view bringSubviewToFront:progressBar];
     self.progressBar = progressBar;
 }
 
@@ -392,7 +412,7 @@ static const CGFloat ScreenShootViewScale = 0.2f;
     UIButton *shareImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     shareImageBtn.frame = CGRectMake(btnX, shareImageBtnY, btnW, btnH);
     [shareImageBtn setTitle:@"分享" forState:UIControlStateNormal];
-    [shareImageBtn addTarget:self action:@selector(shareImage::) forControlEvents:UIControlEventTouchUpInside];
+    [shareImageBtn addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     [screenShotView addSubview:shareImageBtn];
 //    shareImageBtn.backgroundColor = [UIColor greenColor];
 }
@@ -412,6 +432,19 @@ static const CGFloat StatuesBarHeight = 20.0f;
     [self.view addSubview:infoView];
     [self.view sendSubviewToBack:infoView];
 }
+
+-(void)removeSubView {
+    [self.fullScreenBtn removeFromSuperview];
+    [self.originalScreenBtn removeFromSuperview];
+    [self.playBtn removeFromSuperview];
+    [self.pauseBtn removeFromSuperview];
+    [self.progressBar removeFromSuperview];
+    [self.suspendBtn removeFromSuperview];
+    [self.screenShotView removeFromSuperview];
+    [self.screenShotImageView removeFromSuperview];
+
+}
+
 /*
 #pragma mark - Navigation
 
@@ -423,6 +456,12 @@ static const CGFloat StatuesBarHeight = 20.0f;
 */
 
 #pragma mark - User interative
+/**
+ *  关闭弹出的这个播放器
+ */
+-(void)closePlayerView {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 /**
  *  截屏
  */
@@ -607,11 +646,12 @@ static bool kIsFullScreen;
 }
 
 -(void)playbackTimeChanged:(QYPlayerController *)player {
+    NSLog(@"buffval = %f, curVal = %f", player.playableDuration, player.currentPlaybackTime);
+    [self.progressBar setBufferValue:player.playableDuration];
     if (!self.progressBar.isDraging) {
         [self.progressBar setProgressValue:player.currentPlaybackTime];
     }
     //[self.progressBar setBufferrValue:player.playableDuration];
-    [self.progressBar setBufferValue:player.playableDuration];
 }
 
 #pragma mark - ZPVideoProgressBarDelegate

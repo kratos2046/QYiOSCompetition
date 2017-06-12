@@ -1,19 +1,19 @@
 //
-//  ViewController.m
+//  ZPHomePageViewController.m
 //  PlayDemo
 //
-//  Copyright (c) 2017-present, IQIYI, Inc. All rights reserved.
+//  Created by HZP on 2017/6/11.
+//  Copyright © 2017年 liuxiaodan. All rights reserved.
 //
 
-
-#import "ViewController.h"
+#import "ZPHomePageViewController.h"
 #import "PlayViewController.h"
 #import "ActivityIndicatorView.h"
 #import "ZPVideoInfo.h"
 #import "ZPChannelInfo.h"
 #import "ZPPlayerViewController.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZPHomePageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NSArray *channelsInfos;
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)NSMutableArray* dataSourceArrayFirst;
@@ -23,7 +23,7 @@
 @property(nonatomic,strong) ActivityIndicatorView *activityWheel;
 @end
 
-@implementation ViewController
+@implementation ZPHomePageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,11 +42,11 @@
     
     //debug
     /*
-    ZPVideoInfo *info;
-    ZPPlayerViewController *playVC = [[ZPPlayerViewController alloc]init];
-    playVC.videoInfo = info;
-    [self presentViewController:playVC animated:YES completion:nil];
-    */
+     ZPVideoInfo *info;
+     ZPPlayerViewController *playVC = [[ZPPlayerViewController alloc]init];
+     playVC.videoInfo = info;
+     [self presentViewController:playVC animated:YES completion:nil];
+     */
     //debug end
     
 }
@@ -116,7 +116,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.channelsInfos.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -399,84 +399,14 @@
             break;
     }
     
-
+    
     ZPPlayerViewController *playVC = [[ZPPlayerViewController alloc]init];
     playVC.videoInfo = selectVideo;
     [self presentViewController:playVC animated:YES completion:nil];
     
-    
-//    [self addChildViewController:self.playViewController];
-//    [self.playViewController.view setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    [self.view addSubview:self.playViewController.view];
-//    __weak typeof(self)weakSelf = self;
-//    [UIView animateWithDuration:0.3 animations:^{
-//        [weakSelf.playViewController.view setFrame:CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height)];
-//    } completion:^(BOOL finished) {
-//        
-//    }];
-    
 }
 
-//- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer
-//{
-//    if (self.dataSourceArrayFirst.count<1
-//        ||self.dataSourceArraySecond.count<4
-//        ||self.dataSourceArrayThird.count<4) {
-//        return;
-//    }
-//    UIImageView *eventImageView = (UIImageView *)gestureRecognizer.view;
-//    
-//    if (self.playViewController!=nil) {
-//        self.playViewController = nil;
-//    }
-//    self.playViewController = [[PlayViewController alloc] init];
-//    switch (eventImageView.tag) {
-//        case 100:
-//            self.playViewController.playDetail = [self.dataSourceArrayFirst objectAtIndex:0];
-//            break;
-//        case 200:
-//            self.playViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:0];
-//            break;
-//        case 210:
-//            self.playViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:1];
-//            break;
-//        case 220:
-//            self.playViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:2];
-//            break;
-//        case 230:
-//            self.playViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:3];
-//            break;
-//        case 300:
-//            self.playViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:0];
-//            break;
-//        case 310:
-//            self.playViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:1];
-//            break;
-//        case 320:
-//            self.playViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:2];
-//            break;
-//        case 330:
-//            self.playViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:3];
-//            break;
-//            
-//            
-//        default:
-//            break;
-//    }
-//    
-//    [self addChildViewController:self.playViewController];
-//    [self.playViewController.view setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    [self.view addSubview:self.playViewController.view];
-//    __weak typeof(self)weakSelf = self;
-//    [UIView animateWithDuration:0.3 animations:^{
-//        [weakSelf.playViewController.view setFrame:CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height)];
-//    } completion:^(BOOL finished) {
-//        
-//    }];
-//    
-//}
 #pragma network request
-
 -(void)requestUrl
 {
     NSURL *url = [NSURL URLWithString:@"http://iface.qiyi.com/openapi/batch/recommend?app_k=f0f6c3ee5709615310c0f053dc9c65f2&app_v=8.4&app_t=0&platform_id=12&dev_os=10.3.1&dev_ua=iPhone9,3&dev_hw=%7B%22cpu%22%3A0%2C%22gpu%22%3A%22%22%2C%22mem%22%3A%2250.4MB%22%7D&net_sts=1&scrn_sts=1&scrn_res=1334*750&scrn_dpi=153600&qyid=87390BD2-DACE-497B-9CD4-2FD14354B2A4&secure_v=1&secure_p=iPhone&core=1&req_sn=1493946331320&req_times=1"];
@@ -494,7 +424,7 @@
             NSDictionary *tmpDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             NSArray *data = [tmpDic objectForKey:@"data"];
             
-
+            
             //debug ----------------
             
             NSMutableArray *dataArr = [NSMutableArray array];
@@ -502,17 +432,6 @@
                 [dataArr addObject:[ZPChannelInfo channelInfoWithDict:dict]];
             }
             self.channelsInfos = dataArr;
-            /*
-            ZPVideoInfo *videoInfo;
-            if ([data count] > 0) {
-                NSDictionary *dict = data[0][@"video_list"][0];
-                videoInfo = [ZPVideoInfo videoInfoWithDict:dict];
-                ZPPlayerViewController *playVC = [[ZPPlayerViewController alloc]init];
-                playVC.videoInfo = videoInfo;
-                [self presentViewController:playVC animated:YES completion:nil];
-            }
-            */
-            //debug
             
             NSNumber* resultCode = [tmpDic valueForKey:@"code"];
             if (resultCode.integerValue == 0) {
@@ -520,7 +439,7 @@
             }
         }
     }];
-
+    
 }
 - (void)requestFailed
 {

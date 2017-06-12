@@ -25,6 +25,9 @@ static const CGFloat kZPVideoProgressBarButtonSize = 10.0f;
 /**滑动按钮所在的位置*/
 //@property (nonatomic, assign) CGPoint sliderButtonPoint;
 @property (nonatomic, weak) UILabel *timeLabel;
+
+@property (nonatomic, assign) BOOL isFirstLayousSubView;
+
 @end
 
 
@@ -43,6 +46,7 @@ static const CGFloat kZPVideoProgressBarButtonSize = 10.0f;
         _backColor = color;
         _sliderButtonColor = btnColor;
         _isDraging = NO;
+        _isFirstLayousSubView = YES;
         [self createSubview];
     }
     return self;
@@ -78,6 +82,8 @@ static const CGFloat Inaccuracy = 0.0001f;
     
     NSString *timeStr = [NSString stringWithFormat:@"%@ / %@", currentPlayBackTimeStr, totalTimeStr];
     self.timeLabel.text = timeStr;
+    CGRect timelabelFrame = self.timeLabel.frame;
+    NSLog(@"%@", timelabelFrame);
     
     //调整进度条按钮的值
     self.sliderButton.center = CGPointMake(viewW, self.sliderButton.center.y);
@@ -106,6 +112,7 @@ static const CGFloat Inaccuracy = 0.0001f;
 -(void) createBackgroundView {
     UIView *backgroundView = [[UIView alloc]init];
     backgroundView.backgroundColor = self.backColor;
+//    backgroundView.backgroundColor = [UIColor redColor];
     [self addSubview:backgroundView];
     self.backgroundView = backgroundView;
 }
@@ -154,9 +161,9 @@ static const CGFloat Inaccuracy = 0.0001f;
 -(void)layoutSubviews {
     [super layoutSubviews];
 //    NSLog(@"layout subview");
-    static bool isFirstLayousSubView = YES;
+    
     //只有第一次加载时才需要布局子控件
-    if (!isFirstLayousSubView) return;
+    if (!self.isFirstLayousSubView) return;
     
     CGFloat boundsHeight = self.bounds.size.height;
     
@@ -185,7 +192,7 @@ static const CGFloat Inaccuracy = 0.0001f;
     CGFloat labelX = 0;
     CGFloat labelY = boundsHeight - labelH;
     self.timeLabel.frame = CGRectMake(labelX, labelY, labelW, labelH);
-    isFirstLayousSubView = NO;
+    self.isFirstLayousSubView = NO;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -203,6 +210,13 @@ static const CGFloat Inaccuracy = 0.0001f;
 -(CGFloat)valueWithViewWidth:(CGFloat)width {
     return width * self.bounds.size.width / self.maxValue;
 }
+
+-(void)dealloc {
+    NSLog(@"progressbar dealloc");
+//    [self.subviews firstObject]removeFromSuperview
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+
 
 #pragma mark - Action
 -(void)dragMoving:(UIButton*)btn withEvent:(UIEvent*)event {

@@ -7,7 +7,7 @@
 
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "ZPHomePageViewController.h"
 #import "QYPlayerController.h"
 
 
@@ -25,7 +25,7 @@
     [[QYPlayerController sharedInstance] initPlayer];
     
     UIWindow *windows = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    ViewController *vc = [[ViewController alloc] init];
+    UIViewController *vc = [[ZPHomePageViewController alloc] init];
     self.window = windows;
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
